@@ -1,13 +1,13 @@
 # ⚡ pypsa_dispatch_app
 
-A simple Streamlit web app for interactive visualization and analysis of electricity dispatch scenarios using [PyPSA](https://pypsa.org/).
+A simple Streamlit web app for interactive visualisation and analysis of electricity dispatch scenarios using [PyPSA](https://pypsa.org/).
 
 ---
 
 ## Features
 
 - Load and explore energy dispatch scenarios from NetCDF and CSV files
-- Interactive Plotly visualizations
+- Interactive Plotly visualisations
 - Region and date selection
 - Export plot data as CSV
 
@@ -17,7 +17,7 @@ A simple Streamlit web app for interactive visualization and analysis of electri
 
 _You can deploy your own version using [Streamlit Community Cloud](https://streamlit.io/cloud)._  
 
-[Live Demo](https://your-app-name.streamlit.app/) 
+[Live Demo](https://chalg-pypsa-dispatch-app-streamlit-app-4arpu2.streamlit.app/) 
 
 ---
 
