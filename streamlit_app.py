@@ -176,7 +176,7 @@ def main():
         show_curtailment = st.checkbox(
             "Curtailment",
             value=True,
-            help="Show renewable curtailment"
+            help="Show renewable curtailment (wind, utility-scale solar & rooftop solar)"
         )
     
     # Get the objective from the loaded CSV data (no user input needed)
