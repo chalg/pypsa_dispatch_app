@@ -110,7 +110,7 @@ def main():
     scenario_name = st.sidebar.selectbox(
         "Scenario:",
         options=list(scenarios.keys()),
-        help="Select the energy scenario to analyze"
+        help="Select the energy scenario to analyze - this will load the corresponding network data. Scenarios are scaled-up from the *0_2024_baseline* baseline scenario."
     )
     
     # Get network info for selected scenario
