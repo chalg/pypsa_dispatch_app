@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from pathlib import Path
-from functools import lru_cache
+# from functools import lru_cache
 import pypsa
 from plot_dispatch import plot_dispatch
 
@@ -91,7 +91,7 @@ def get_network_info(scenario_path: str):
         return None
 
 def main():
-    st.title("⚡ NEM High-Level Dispatch Analysis")
+    st.title("⚡ High-Level NEM Dispatch Analysis")
     st.markdown("Interactive visualisation of PyPSA dispatch scenarios")
     
     # Load scenarios and objectives
@@ -206,6 +206,8 @@ def main():
         st.write(f"**Selected regions:** {len(regions) if regions else 0}")
         if scenario_objectives:
             st.write(f"**Objectives loaded:** {len(scenario_objectives)} scenarios")
+    
+    st.sidebar.markdown("<span style='font-size: 11px; color: gray;'>by Grant Chalmers</span>", unsafe_allow_html=True)
     
     # Show warning if no regions selected
     if not regions:
