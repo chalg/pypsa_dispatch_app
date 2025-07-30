@@ -2,6 +2,7 @@
 .venv
 #*.png
 *.zip
+*.pyc
 # *.html
 
 
