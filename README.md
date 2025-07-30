@@ -18,6 +18,7 @@ A simple Streamlit web app for interactive visualisation and analysis of electri
 _You can deploy your own version using [Streamlit Community Cloud](https://streamlit.io/cloud)._  
 
 [Live Demo](https://chalg-pypsa-dispatch-app-streamlit-app-4arpu2.streamlit.app/) 
+_Tip: Right-click or Cmd/Ctrl+Click to open in a new tab._
 
 ---
 
