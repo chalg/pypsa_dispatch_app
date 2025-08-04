@@ -9,7 +9,6 @@ A simple Streamlit web app for interactive visualisation and analysis of electri
 - Load and explore energy dispatch scenarios from NetCDF and CSV files
 - Interactive Plotly visualisations
 - Region and date selection
-- Export plot data as CSV
 
 ---
 
@@ -52,15 +51,19 @@ _Tip: Right-click or Cmd/Ctrl+Click to open in a new tab._
 ## Directory Structure
 
 ```plaintext
+
 pypsa_dispatch_app/
 │
 ├── streamlit_app.py # Main Streamlit app
 ├── plot_dispatch.py # Plotting functions
 ├── requirements.txt # Python dependencies
 ├── results/ # Results directory (contains scenario files)
-│ └── scenarios/ # Put your scenario .nc and .csv files here
+│ └── scenarios/ # Scenario files organized by resolution
+│     ├── 30mins/ # Put your 30-minute resolution .nc and .csv files here
+│     └── 60mins/ # Put your hourly resolution .nc and .csv files here
 └── .streamlit/
-└── config.toml # Streamlit settings (default to light theme)
+    └── config.toml # Streamlit settings (default to light theme)
+
 ```
 
 --
@@ -74,8 +77,7 @@ The app defaults to **light mode** for all users via `.streamlit/config.toml`:
 base="light"
 ```
 
-Author
-by Grant Chalmers
+Author: Grant Chalmers
 
 
 Made with [Streamlit](https://streamlit.io/) & [PyPSA](https://pypsa.org/).

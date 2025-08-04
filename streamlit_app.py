@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 from pathlib import Path
-# from functools import lru_cache
 import pypsa
 from plot_dispatch import plot_dispatch
 
@@ -26,27 +25,26 @@ st.markdown(
 
 # Cache network loading and scenario data
 @st.cache_data
-def get_scenarios():
-    """Get available scenarios"""
-    scen_dir = Path("results/scenarios")
+def get_scenarios(resolution="60mins"):
+    """Get available scenarios for specified resolution"""
+    scen_dir = Path(f"results/scenarios/{resolution}")
     if scen_dir.exists():
         return {p.stem: str(p) for p in sorted(scen_dir.glob("*.nc"))}
     return {}
 
 @st.cache_data
-def load_scenario_objectives():
-    """Load scenario objectives from CSV"""
+def load_scenario_objectives(resolution="60mins"):
+    """Load scenario objectives from CSV for specified resolution"""
     try:
-        # Look for the CSV file (you may need to adjust the pattern)
-        results_dir = Path("results/scenarios")
+        results_dir = Path(f"results/scenarios/{resolution}")
         csv_files = list(results_dir.glob("scenarios_summary_*.csv"))
         
         if not csv_files:
-            st.warning("No scenarios_summary_*.csv file found in results/scenarios/")
+            st.warning(f"No scenarios_summary_*.csv file found in results/scenarios/{resolution}/")
             return {}
         
-        # Use the most recent CSV file (or you could make this configurable)
-        csv_file = sorted(csv_files)[-1]  # Get the latest one
+        # Use the most recent CSV file
+        csv_file = sorted(csv_files)[-1]
         
         # Read only the first two columns (Scenario and Objective)
         df_results = pd.read_csv(csv_file, usecols=[0, 1])
@@ -54,13 +52,11 @@ def load_scenario_objectives():
         # Create a dictionary mapping scenario name to objective
         objectives = {}
         
-        # Iterate through each row to get scenario name and objective
         for _, row in df_results.iterrows():
-            scenario_name = str(row.iloc[0])  # First column (Scenario)
-            objective = str(row.iloc[1])      # Second column (Objective)
+            scenario_name = str(row.iloc[0])
+            objective = str(row.iloc[1])
             
             if pd.notna(scenario_name) and pd.notna(objective):
-                # Process the objectives (replace \\n with actual newlines if needed)
                 objective = objective.replace("\\n", "\n")
                 objectives[scenario_name] = objective
         
@@ -92,19 +88,26 @@ def get_network_info(scenario_path: str):
 
 def main():
     st.title("⚡ High-Level NEM Dispatch Analysis")
-    st.markdown("Interactive visualisation of PyPSA dispatch scenarios")
-    
-    # Load scenarios and objectives
-    scenarios = get_scenarios()
-    scenario_objectives = load_scenario_objectives()
-    
-    if not scenarios:
-        st.error("No scenarios found in `results/scenarios/` directory!")
-        st.info("Please ensure your `.nc` files are in the `results/scenarios/` folder.")
-        return
+    st.markdown("Interactive visualisation of PyPSA dispatch scenarios at different temporal resolutions.")
     
     # Sidebar controls
     st.sidebar.header("📊 Controls")
+    
+    # Resolution selection (at the top of sidebar)
+    resolution = st.sidebar.selectbox(
+        "⏱️ Temporal Resolution:",
+        options=["60mins", "30mins"],
+        help="Select the temporal resolution for analysis. 30mins is a slightly modified subset of scenarios, with some scenarios not available at 30mins resolution."
+    )
+    
+    # Load scenarios and objectives based on selected resolution
+    scenarios = get_scenarios(resolution)
+    scenario_objectives = load_scenario_objectives(resolution)
+    
+    if not scenarios:
+        st.error(f"No scenarios found in `results/scenarios/{resolution}/` directory!")
+        st.info(f"Please ensure your `.nc` files are in the `results/scenarios/{resolution}/` folder.")
+        return
     
     # Scenario selection
     scenario_name = st.sidebar.selectbox(
@@ -124,20 +127,18 @@ def main():
     scenario_objective = scenario_objectives.get(scenario_name, "")
     
     # Display scenario objective if available
-    
-
     if scenario_objective:
         st.sidebar.header("📋 Scenario Objective")
         st.sidebar.markdown(
-        scenario_objective.replace("\n", "<br>"),
-        unsafe_allow_html=True
-    )
+            scenario_objective.replace("\n", "<br>"),
+            unsafe_allow_html=True
+        )
     
     # Region selection
     regions = st.sidebar.multiselect(
         "Regions:",
         options=network_info['regions'],
-        default=network_info['regions'],  # Select all by default
+        default=network_info['regions'],
         help="Select one or more regions to include in the analysis"
     )
     
@@ -153,12 +154,16 @@ def main():
         )
     
     with col2:
+        # Adjust default days based on resolution
+        default_days = 7
+        max_days = 90
+        
         days = st.number_input(
             "Days:",
             min_value=1,
-            max_value=90,
-            value=7,
-            help="Number of days to analyze"
+            max_value=max_days,
+            value=default_days,
+            help=f"Number of days to analyse."
         )
     
     # Options
@@ -179,15 +184,12 @@ def main():
             help="Show renewable curtailment (wind, utility-scale solar & rooftop solar)"
         )
     
-    # Get the objective from the loaded CSV data (no user input needed)
-    # Map scenario file name to CSV scenario name by removing 'scenario_' prefix if present
+    # Get the objective from the loaded CSV data
     csv_scenario_name = scenario_name
-        
     scenario_objective_from_csv = scenario_objectives.get(csv_scenario_name, "")
     
-        
     # Auto-generate plot when inputs change
-    if regions:  # Only generate if regions are selected
+    if regions:
         generate_plot(
             scenario_name=scenario_name,
             scenario_path=scenarios[scenario_name],
@@ -196,11 +198,13 @@ def main():
             regions=regions,
             show_imports=show_imports,
             show_curtailment=show_curtailment,
-            scenario_objective=scenario_objective_from_csv
+            scenario_objective=scenario_objective_from_csv,
+            resolution=resolution
         )
     
     # Info panel
     with st.sidebar.expander("ℹ️ Scenario Info"):
+        st.write(f"**Resolution:** {resolution}")
         st.write(f"**Available regions:** {len(network_info['regions'])}")
         st.write(f"**Date range:** {network_info['start_date']} to {network_info['end_date']}")
         st.write(f"**Selected regions:** {len(regions) if regions else 0}")
@@ -213,7 +217,7 @@ def main():
     if not regions:
         st.sidebar.warning("⚠️ Please select at least one region to display the plot.")
 
-def generate_plot(scenario_name, scenario_path, start_date, days, regions, show_imports, show_curtailment, scenario_objective=""):
+def generate_plot(scenario_name, scenario_path, start_date, days, regions, show_imports, show_curtailment, scenario_objective="", resolution="60mins"):
     """Generate and display the dispatch plot"""
     
     try:
@@ -239,12 +243,12 @@ def generate_plot(scenario_name, scenario_path, start_date, days, regions, show_
             # Enhance the plot title
             title_parts = [
                 f"Scenario: {scenario_name}",
+                f"Resolution: {resolution}",
                 f"Start: {start_date_str}",
                 f"Duration: {days} days",
                 f"Regions: {', '.join(regions[:3])}{'...' if len(regions) > 3 else ''}",
             ]
             
-                        
             fig.update_layout(
                 title=f"Dispatch Analysis<br><sub>{' | '.join(title_parts)}</sub>",
                 height=700
@@ -253,37 +257,6 @@ def generate_plot(scenario_name, scenario_path, start_date, days, regions, show_
         # Display the plot
         st.plotly_chart(fig, use_container_width=True)
         
-        # Summary statistics
-        # with st.expander("📈 Plot Summary"):
-        #     col1, col2, col3, col4 = st.columns(4)
-            
-        #     with col1:
-        #         st.metric("Scenario", scenario_name)
-        #     with col2:
-        #         st.metric("Regions", len(regions))
-        #     with col3:
-        #         st.metric("Duration", f"{days} days")
-        #     with col4:
-        #         st.metric("Start Date", start_date_str)
-        
-        # Export options
-        # st.markdown("### 💾 Export Options")
-        # col1, col2 = st.columns(2)
-        
-        # with col1:
-        #     if st.button("📊 Download Plot Data"):
-        #         st.info("Plot data export feature - implement based on your needs")
-        
-        # with col2:
-        #     if st.button("🖼️ Save as HTML"):
-        #         html_str = fig.to_html(include_plotlyjs='cdn')
-        #         st.download_button(
-        #             label="Download HTML",
-        #             data=html_str,
-        #             file_name=f"dispatch_{scenario_name}_{start_date_str}.html",
-        #             mime="text/html"
-        #         )
-    
     except Exception as e:
         st.error(f"Error generating plot: {str(e)}")
         with st.expander("🐛 Debug Info"):

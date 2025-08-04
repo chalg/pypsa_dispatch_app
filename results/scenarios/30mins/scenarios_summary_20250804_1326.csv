@@ -1,0 +1,180 @@
+Scenario,Objective,Gas Generation (GWh),Battery Capacity (GW),Generator Capacity (GW),Wind & Solar Curtailment (GWh),Unserved Energy (GWh),Unserved by Region (GWh)
+0_2024_baseline_30min,"NSW1-Black Coal: x1.0
+NSW1-Rooftop Solar: x1.0
+NSW1-Solar: x1.0
+NSW1-Wind: x1.0
+NSW1-Battery: x1.0
+QLD1-Black Coal: x1.0
+QLD1-Rooftop Solar: x1.0
+QLD1-Solar: x1.0
+QLD1-Wind: x1.0
+QLD1-Battery: x1.0
+SA1-Rooftop Solar: x1.0
+SA1-Solar: x1.0
+SA1-Wind: x1.0
+SA1-Battery: x1.0
+VIC1-Brown Coal: x1.0
+VIC1-Rooftop Solar: x1.0
+VIC1-Solar: x1.0
+VIC1-Wind: x1.0
+VIC1-Battery: x1.0",3358.095,12.101,"Black Coal: 16389.0
+Brown Coal: 4690.0
+Diesel: 1110.0
+Gas: 12751.0
+Hydro: 12808.0
+Rooftop Solar: 15901.42
+Solar: 15477.0
+Wind: 16008.0",5435.563,0,"NSW1: 0.0
+QLD1: 0.0
+SA1: 0.0
+TAS1: 0.0
+VIC1: 0.0"
+8.0_6xVre&Battery_30min,"NSW1-Black Coal: x0.0
+NSW1-Gas: x1.0
+NSW1-Rooftop Solar: x6.0
+NSW1-Solar: x6.0
+NSW1-Wind: x6.0
+NSW1-Battery: x6.0
+QLD1-Black Coal: x0.0
+QLD1-Gas: x1.0
+QLD1-Rooftop Solar: x6.0
+QLD1-Solar: x6.0
+QLD1-Wind: x6.0
+QLD1-Battery: x6.0
+SA1-Gas: x1.0
+SA1-Rooftop Solar: x6.0
+SA1-Solar: x6.0
+SA1-Wind: x6.0
+SA1-Battery: x6.0
+TAS1-Gas: x1.0
+TAS1-Wind: x6.0
+TAS1-Battery: x6.0
+VIC1-Gas: x1.0
+VIC1-Brown Coal: x0.0
+VIC1-Rooftop Solar: x6.0
+VIC1-Solar: x6.0
+VIC1-Wind: x6.0
+VIC1-Battery: x6.0",6808.853,72.606,"Black Coal: 0.0
+Brown Coal: 0.0
+Diesel: 1110.0
+Gas: 12751.0
+Hydro: 12808.0
+Rooftop Solar: 94146.27
+Solar: 92862.0
+Wind: 96048.0",558620.6,0,"NSW1: 0.0
+QLD1: 0.0
+SA1: 0.0
+TAS1: 0.0
+VIC1: 0.0"
+8.1_6xVre&Battery_30min,"NSW1-Black Coal: x0.0
+NSW1-Gas: x0.9
+NSW1-Rooftop Solar: x6.0
+NSW1-Solar: x6.0
+NSW1-Wind: x6.0
+NSW1-Battery: x6.0
+QLD1-Black Coal: x0.0
+QLD1-Gas: x0.9
+QLD1-Rooftop Solar: x6.0
+QLD1-Solar: x6.0
+QLD1-Wind: x6.0
+QLD1-Battery: x6.0
+SA1-Gas: x0.9
+SA1-Rooftop Solar: x6.0
+SA1-Solar: x6.0
+SA1-Wind: x6.0
+SA1-Battery: x6.0
+TAS1-Gas: x0.9
+TAS1-Wind: x6.0
+TAS1-Battery: x6.0
+VIC1-Gas: x0.9
+VIC1-Brown Coal: x0.0
+VIC1-Rooftop Solar: x6.0
+VIC1-Solar: x6.0
+VIC1-Wind: x6.0
+VIC1-Battery: x6.0",6469.077,72.606,"Black Coal: 0.0
+Brown Coal: 0.0
+Diesel: 1110.0
+Gas: 11475.9
+Hydro: 12808.0
+Rooftop Solar: 94146.27
+Solar: 92862.0
+Wind: 96048.0",558383.665,14.798,"NSW1: 7.482
+QLD1: 0.0
+SA1: 0.0
+TAS1: 0.0
+VIC1: 7.315"
+8.2_7xVre&BatteryZeroCoal_30min,"NSW1-Black Coal: x0.0
+NSW1-Gas: x0.9
+NSW1-Rooftop Solar: x7.0
+NSW1-Solar: x6.0
+NSW1-Wind: x7.0
+NSW1-Battery: x7.0
+QLD1-Black Coal: x0.0
+QLD1-Gas: x0.9
+QLD1-Rooftop Solar: x6.0
+QLD1-Solar: x7.0
+QLD1-Wind: x7.0
+QLD1-Battery: x7.0
+SA1-Gas: x0.9
+SA1-Rooftop Solar: x6.0
+SA1-Solar: x6.0
+SA1-Wind: x6.0
+SA1-Battery: x7.0
+TAS1-Gas: x0.9
+TAS1-Wind: x6.0
+TAS1-Battery: x7.0
+VIC1-Gas: x0.9
+VIC1-Brown Coal: x0.0
+VIC1-Rooftop Solar: x6.0
+VIC1-Solar: x7.0
+VIC1-Wind: x7.0
+VIC1-Battery: x7.0",5074.67,84.707,"Black Coal: 0.0
+Brown Coal: 0.0
+Diesel: 1110.0
+Gas: 11475.9
+Hydro: 12808.0
+Rooftop Solar: 99640.72
+Solar: 100275.0
+Wind: 108706.0",622207.705,0,"NSW1: 0.0
+QLD1: 0.0
+SA1: 0.0
+TAS1: 0.0
+VIC1: 0.0"
+8.3_VreCurtailReview_30min,"NSW1-Black Coal: x0.0
+NSW1-Gas: x0.75
+NSW1-Rooftop Solar: x3.0
+NSW1-Solar: x3.0
+NSW1-Wind: x6.0
+NSW1-Battery: x10.0
+QLD1-Black Coal: x0.0
+QLD1-Gas: x0.75
+QLD1-Rooftop Solar: x3.0
+QLD1-Solar: x3.0
+QLD1-Wind: x6.0
+QLD1-Battery: x8.0
+SA1-Gas: x0.75
+SA1-Rooftop Solar: x2.0
+SA1-Solar: x3.0
+SA1-Wind: x2.0
+SA1-Battery: x8.0
+TAS1-Gas: x0.75
+TAS1-Rooftop Solar: x3.0
+TAS1-Wind: x5.0
+TAS1-Battery: x8.0
+VIC1-Gas: x0.75
+VIC1-Brown Coal: x0.0
+VIC1-Rooftop Solar: x4.0
+VIC1-Solar: x4.0
+VIC1-Wind: x6.0
+VIC1-Battery: x12.0",5560.387,116.176,"Black Coal: 0.0
+Brown Coal: 0.0
+Diesel: 1110.0
+Gas: 9563.25
+Hydro: 12808.0
+Rooftop Solar: 49482.92
+Solar: 48465.0
+Wind: 84409.0",171249.049,0,"NSW1: 0.0
+QLD1: 0.0
+SA1: 0.0
+TAS1: 0.0
+VIC1: 0.0"
