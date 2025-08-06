@@ -156,7 +156,7 @@ def main():
     with col2:
         # Adjust default days based on resolution
         default_days = 7
-        max_days = 90
+        max_days = 365
         
         days = st.number_input(
             "Days:",
