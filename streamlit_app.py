@@ -25,7 +25,7 @@ st.markdown(
 
 # Cache network loading and scenario data
 @st.cache_data
-def get_scenarios(resolution="60mins"):
+def get_scenarios(resolution="30mins"):
     """Get available scenarios for specified resolution"""
     scen_dir = Path(f"results/scenarios/{resolution}")
     if scen_dir.exists():
@@ -33,7 +33,7 @@ def get_scenarios(resolution="60mins"):
     return {}
 
 @st.cache_data
-def load_scenario_objectives(resolution="60mins"):
+def load_scenario_objectives(resolution="30mins"):
     """Load scenario objectives from CSV for specified resolution"""
     try:
         results_dir = Path(f"results/scenarios/{resolution}")
@@ -96,7 +96,7 @@ def main():
     # Resolution selection (at the top of sidebar)
     resolution = st.sidebar.selectbox(
         "⏱️ Temporal Resolution:",
-        options=["60mins", "30mins"],
+        options=["30mins", "60mins"],
         help="Select the temporal resolution for analysis. 30mins is a slightly modified subset of scenarios, with some scenarios not available at 30mins resolution."
     )
     
@@ -217,7 +217,7 @@ def main():
     if not regions:
         st.sidebar.warning("⚠️ Please select at least one region to display the plot.")
 
-def generate_plot(scenario_name, scenario_path, start_date, days, regions, show_imports, show_curtailment, scenario_objective="", resolution="60mins"):
+def generate_plot(scenario_name, scenario_path, start_date, days, regions, show_imports, show_curtailment, scenario_objective="", resolution="30mins"):
     """Generate and display the dispatch plot"""
     
     try:
