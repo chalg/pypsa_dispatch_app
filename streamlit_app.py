@@ -110,11 +110,12 @@ def main():
         return
     
     # Scenario selection
-    scenario_name = st.sidebar.selectbox(
-        "Scenario:",
-        options=list(scenarios.keys()),
-        help="Select the energy scenario to analyze - this will load the corresponding network data. Scenarios are scaled-up from the *0_2024_baseline* baseline scenario."
-    )
+    scenario_name = create_scenario_selectbox_with_highlight(scenarios)
+    # scenario_name = st.sidebar.selectbox(
+    #     "Scenario:",
+    #     options=list(scenarios.keys()),
+    #     help="Select the energy scenario to analyze - this will load the corresponding network data. Scenarios are scaled-up from the *0_2024_baseline* baseline scenario."
+    # )
     
     # Get network info for selected scenario
     network_info = get_network_info(scenarios[scenario_name])
@@ -217,6 +218,30 @@ def main():
     if not regions:
         st.sidebar.warning("⚠️ Please select at least one region to display the plot.")
 
+# Utility function to create a selectbox with a highlighted option (e.g., "8.3_VreCurtailReview")
+def create_scenario_selectbox_with_highlight(scenarios):
+    """Create scenario selectbox with highlighted option"""
+    scenario_keys = list(scenarios.keys())
+    
+    # Create display options with special formatting
+    display_options = []
+    for scenario in scenario_keys:
+        if scenario == "8.3_VreCurtailReview" or scenario.endswith("VreCurtailReview"):
+            display_options.append(f"⭐ {scenario}")
+        else:
+            display_options.append(scenario)
+    
+    # Create selectbox
+    selected_index = st.sidebar.selectbox(
+        "Scenario:",
+        options=range(len(scenario_keys)),
+        format_func=lambda x: display_options[x],
+        help="Select the energy scenario to analyze - this will load the corresponding network data. Scenarios are scaled-up from the *0_2024_baseline* baseline scenario."
+    )
+    
+    return scenario_keys[selected_index]
+
+# Display the dispatch plot based on user inputs
 def generate_plot(scenario_name, scenario_path, start_date, days, regions, show_imports, show_curtailment, scenario_objective="", resolution="30mins"):
     """Generate and display the dispatch plot"""
     
