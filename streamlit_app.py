@@ -88,17 +88,20 @@ def get_network_info(scenario_path: str):
 
 def main():
     st.title("⚡ High-Level NEM Dispatch Analysis")
-    st.markdown("Interactive visualisation of PyPSA dispatch scenarios at different temporal resolutions.")
+    st.markdown("Interactive visualisation of PyPSA dispatch scenarios.")
     
     # Sidebar controls
     st.sidebar.header("📊 Controls")
     
-    # Resolution selection (at the top of sidebar)
-    resolution = st.sidebar.selectbox(
-        "⏱️ Temporal Resolution:",
-        options=["30mins", "60mins"],
-        help="Select the temporal resolution for analysis. 30mins is a slightly modified subset of scenarios, with some scenarios not available at 30mins resolution."
-    )
+    # Resolution selection (temporarily hidden - using only 30mins)
+    # resolution = st.sidebar.selectbox(
+    #     "⏱️ Temporal Resolution:",
+    #     options=["30mins", "60mins"],
+    #     help="Select the temporal resolution for analysis. 30mins is a slightly modified subset of scenarios, with some scenarios not available at 30mins resolution."
+    # )
+    
+    # Force resolution to 30mins for now
+    resolution = "30mins"
     
     # Load scenarios and objectives based on selected resolution
     scenarios = get_scenarios(resolution)
