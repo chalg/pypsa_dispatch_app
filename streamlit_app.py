@@ -60,7 +60,8 @@ def load_scenario_objectives(resolution="30mins"):
                 objective = objective.replace("\\n", "\n")
                 objectives[scenario_name] = objective
         
-        st.sidebar.success(f"✅ Loaded {len(objectives)} objectives from {csv_file.name}")
+        obj_word = "objective" if len(objectives) < 2 else "objectives"
+        st.sidebar.success(f"✅ Loaded {len(objectives)} {obj_word} from {csv_file.name}")
         return objectives
         
     except Exception as e:
@@ -94,14 +95,14 @@ def main():
     st.sidebar.header("📊 Controls")
     
     # Resolution selection (temporarily hidden - using only 30mins)
-    # resolution = st.sidebar.selectbox(
-    #     "⏱️ Temporal Resolution:",
-    #     options=["30mins", "60mins"],
-    #     help="Select the temporal resolution for analysis. 30mins is a slightly modified subset of scenarios, with some scenarios not available at 30mins resolution."
-    # )
+    resolution = st.sidebar.selectbox(
+        "⏱️ Temporal Resolution:",
+        options=["30mins", "5mins"],
+        help="Select the temporal resolution for analysis. 5mins is a large network equivalent to 8.3_VreCurtailReview but at 5-minute temporal resolution."
+    )
     
     # Force resolution to 30mins for now
-    resolution = "30mins"
+    # resolution = "30mins"
     
     # Load scenarios and objectives based on selected resolution
     scenarios = get_scenarios(resolution)
