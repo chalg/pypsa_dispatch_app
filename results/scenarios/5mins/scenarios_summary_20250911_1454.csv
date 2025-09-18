@@ -1,0 +1,44 @@
+Scenario,Objective,GPG (GWh),Battery Capacity (GW),Generator Capacity (GW),Wind & Solar Curtailment (GWh),Unserved Energy (GWh),Unserved by Region (GWh)
+8.4.1_ZeroThermal,"NSW1-Black Coal: x0.0
+NSW1-Diesel: x0.0
+NSW1-Gas: x0.0
+NSW1-Rooftop Solar: x3.0
+NSW1-Solar: x4.0
+NSW1-Wind: x10.0
+NSW1-Battery: x13.0
+QLD1-Black Coal: x0.0
+QLD1-Diesel: x0.0
+QLD1-Gas: x0.0
+QLD1-Rooftop Solar: x3.0
+QLD1-Solar: x4.0
+QLD1-Wind: x8.0
+QLD1-Battery: x11.0
+SA1-Gas: x0.0
+SA1-Diesel: x0.0
+SA1-Rooftop Solar: x2.0
+SA1-Solar: x5.0
+SA1-Wind: x4.0
+SA1-Battery: x6.0
+TAS1-Diesel: x0.0
+TAS1-Gas: x0.0
+TAS1-Rooftop Solar: x3.0
+TAS1-Wind: x5.0
+TAS1-Battery: x6.0
+VIC1-Brown Coal: x0.0
+VIC1-Diesel: x0.0
+VIC1-Gas: x0.0
+VIC1-Rooftop Solar: x4.0
+VIC1-Solar: x6.0
+VIC1-Wind: x8.0
+VIC1-Battery: x12.0",0,131.954,"Black Coal: 0.0
+Brown Coal: 0.0
+Diesel: 0.0
+Gas: 0.0
+Hydro: 12808.0
+Rooftop Solar: 49482.92
+Solar: 66711.0
+Wind: 121675.0",35946.152,0,"NSW1: 0.0
+QLD1: 0.0
+SA1: 0.0
+TAS1: 0.0
+VIC1: 0.0"
