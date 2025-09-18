@@ -4,6 +4,6 @@
 *.zip
 *.pyc
 # *.html
-
+results/scenarios/5mins/8.3_VreCurtailReview.nc
 
 /.quarto/
