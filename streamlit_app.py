@@ -98,7 +98,7 @@ def main():
     resolution = st.sidebar.selectbox(
         "⏱️ Temporal Resolution:",
         options=["30mins", "5mins"],
-        help="Select the temporal resolution for analysis. 5mins is a large network equivalent to 8.3_VreCurtailReview but at 5-minute temporal resolution."
+        help="Select the temporal resolution for analysis. 5mins is a single battery scale-up scenario with no thermal generation. This scenario only covers the problematic months of May and June where there were multiple low-wind events. The full year at 5-min resolution network is too large to serve via this app."
     )
     
     # Force resolution to 30mins for now
